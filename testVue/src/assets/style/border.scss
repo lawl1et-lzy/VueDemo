@@ -1,0 +1,69 @@
+/*
+  * @method: borderHalfPx
+  * @param:  $borderColor   线条颜色
+  * @param:  $borderRadius  圆角弧度
+  * @param:  $borderTop     上边框宽度
+  * @param:  $borderBottom  下边框宽度
+  * @param:  $borderLeft    左边框宽度
+  * @param:  $borderRight   右边框宽度
+  * @param:  $borderStyle   边框样式
+  */
+@mixin borderHalfPx($borderColor: #ddd, $borderRadius: 0, $borderTop: 0, $borderRight: 0, $borderBottom: 0, $borderLeft: 0, $borderStyle: solid) {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 201%;
+    height: 201%;
+    border-radius: $borderRadius * 2;
+    border: $borderTop $borderStyle $borderColor; /*no*/
+    border-right-width: $borderRight; /*no*/
+    border-bottom-width: $borderBottom; /*no*/
+    border-left-width: $borderLeft; /*no*/
+    transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform: scale(0.5, 0.5);
+    -webkit-transform: scale(0.5, 0.5);
+  }
+}
+// border： all
+@mixin borderHalfPxRound($borderColor: #ddd, $borderRadius: 0) {
+  @include borderHalfPx($borderColor, $borderRadius, 1px, 1px, 1px, 1px);
+}
+// border：上
+@mixin borderTopHalfPx($borderColor: #ddd, $borderRadius: 0) {
+  @include borderHalfPx($borderColor, $borderRadius, 1px, 0, 0, 0);
+  // 解决before内容盖住div, 点击失效的问题 (例如：点击input无法focus)
+  &::before {
+    height: 0;
+    bottom: initial;
+  }
+}
+// border：下
+@mixin borderBottomHalfPx($borderColor: #ddd, $borderRadius: 0) {
+  @include borderHalfPx($borderColor, $borderRadius, 0, 0, 1px, 0);
+  &::before {
+    height: 0;
+    top: initial;
+  }
+}
+// border：左
+@mixin borderLeftHalfPx($borderColor: #ddd, $borderRadius: 0) {
+  @include borderHalfPx($borderColor, $borderRadius, 0, 0, 0, 1px);
+  &::before {
+    width: 0;
+    right: initial;
+  }
+}
+// border：右
+@mixin borderRightHalfPx($borderColor: #ddd, $borderRadius: 0) {
+  @include borderHalfPx($borderColor, $borderRadius, 0, 1px, 0, 0);
+  &::before {
+    width: 0;
+    left: initial;
+  }
+}

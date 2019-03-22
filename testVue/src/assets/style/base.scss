@@ -1,0 +1,84 @@
+input,
+textarea {
+  width: 99%;
+  height: 100%;
+  color: #666666;
+  border: 0;
+  &::-webkit-input-placeholder {
+    /*WebKit browsers*/
+    color: rgba(204, 204, 204, 1);
+  }
+  &::-moz-input-placeholder {
+    /*Mozilla Firefox*/
+    color: rgba(204, 204, 204, 1);
+  }
+  &::-ms-input-placeholder {
+    /*Internet Explorer*/
+    color: rgba(204, 204, 204, 1);
+  }
+}
+img {
+  width: 100%;
+  vertical-align: middle;
+  display: inline-block;
+}
+// button
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 12px;
+}
+.btn {
+  padding: 10px 24px;
+  color: #666666;
+  &.btn-active-t {
+    border-color: #4385f5;
+    color: #4385f5;
+  }
+  &.btn-circle {
+    border-radius: 30px; /*no*/
+  }
+}
+// hr
+.hr {
+  width: 100%;
+  height: 20px;
+  background-color: #f0f0f0;
+}
+// 图标
+.icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  // &.icon-info {
+  //   background-image: url('../../images/icon/icon-info.png');
+  // }
+  // &.icon-close {
+  //   background-image: url('../../images/icon/icon-close.png');
+  // }
+  // &.icon-close-full {
+  //   background-image: url('../../images/icon/icon-close-full.png');
+  // }
+  // &.icon-star-off {
+  //   background-image: url('../../images/icon/icon-star-off.png');
+  // }
+  // &.icon-star-on {
+  //   background-image: url('../../images/icon/icon-star-on.png');
+  // }
+  &.icon-pd16 {
+    margin-right: 16px;
+  }
+  &.icon-pd20 {
+    margin-right: 20px;
+  }
+  &.icon-size-36 {
+    width: 36px;
+    height: 36px;
+  }
+  &.icon-size-60 {
+    width: 60px;
+    height: 60px;
+  }
+}
