@@ -1,0 +1,45 @@
+// 图标
+.icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  &.icon-pd16 {
+    margin-right: 16px;
+  }
+  &.icon-pd20 {
+    margin-right: 20px;
+  }
+  &.icon-size-36 {
+    width: 36px;
+    height: 36px;
+  }
+  &.icon-size-60 {
+    width: 60px;
+    height: 60px;
+  }
+}
+// button
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 12px;
+}
+.btn {
+  padding: 10px 24px;
+  color: #666666;
+  &.btn-active-t {
+    border-color: #4385f5;
+    color: #4385f5;
+  }
+  &.btn-circle {
+    border-radius: 30px; /*no*/
+  }
+}
+// hr
+.hr {
+  width: 100%;
+  height: 20px;
+  background-color: #f0f0f0;
+}
