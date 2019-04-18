@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/pages/Axios'
+import Index from '@/pages/Date'
 import Render from '@/pages/Render'
 
 Vue.use(Router)
