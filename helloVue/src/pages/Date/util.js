@@ -12,6 +12,7 @@ Date.prototype.format = function (format) {
   if (/(y+)/i.test(format)) {
     format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length))
   }
+  
   for (let k in date) {
     if (new RegExp('(' + k + ')').test(format)) {
       format = format.replace(RegExp.$1, RegExp.$1.length == 1
@@ -22,7 +23,9 @@ Date.prototype.format = function (format) {
 }
 // console.log('newDate', newDate.format('yyyy.MM.dd hh:mm'))
 
-// console.log(new Date(1555808400).format('yyyy年MM月dd hh:mm'))
+console.log(new Date(1555808400).format('yyyy年MM月dd hh:mm'))
+
+console.log(new Date(1555808400000).getMonth())
 // var objs = [
 //   {
 //     type: 'fly'
