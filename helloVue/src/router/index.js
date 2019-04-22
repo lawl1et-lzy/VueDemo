@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/pages/Date'
-import Render from '@/pages/Render'
+import Index from '@/pages/TestES6'
+// import Render from '@/pages/Render'
 
 Vue.use(Router)
 
@@ -12,11 +12,11 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: Index
-    },
-    {
-      path: '/render',
-      name: 'Render',
-      component: Render
     }
+    // {
+    //   path: '/render',
+    //   name: 'Render',
+    //   component: Render
+    // }
   ]
 })
