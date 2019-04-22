@@ -1,10 +1,10 @@
 <template>
-  <div id="div1">
+  <div id="div">
   </div>
 </template>
 
 <script>
-import './deepCopy.js'
+import './JsQueue.js'
 export default {
   name: 'Index',
   mounted () {
