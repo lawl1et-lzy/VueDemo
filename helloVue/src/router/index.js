@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/pages/TestES6'
+import Index from '@/pages/Parabola'
 // import Render from '@/pages/Render'
 
 Vue.use(Router)
