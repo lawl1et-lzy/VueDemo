@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/pages/Parabola'
+import Index from '@/pages/TestMixin'
+import PageB from '@/pages/TestIframe/PageB'
 // import Render from '@/pages/Render'
-import TestRouter from '@/pages/TestRouter'
+// import TestRouter from '@/pages/TestRouter'
 
 Vue.use(Router)
 
@@ -15,9 +16,14 @@ export default new Router({
       component: Index
     },
     {
-      path: '/testrouter/:id?/:pageid?',
-      name: 'TestRouter',
-      component: TestRouter
+      path: '/pageb',
+      name: 'PageB',
+      component: PageB
     }
+    // {
+    //   path: '/testrouter/:id?/:pageid?',
+    //   name: 'TestRouter',
+    //   component: TestRouter
+    // }
   ]
 })
