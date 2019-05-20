@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import './JsQueue.js'
+import './script/Test'
 export default {
   name: 'Index',
   mounted () {
