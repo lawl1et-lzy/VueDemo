@@ -15,10 +15,13 @@ Vue.config.productionTip = false
 Vue.use(MyPlugin)
 
 /* eslint-disable no-new */
-window.vue = new Vue({
+new Vue({
   el: '#app',
   router,
   store,
   components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  mounted () {
+    document.dispatchEvent(new Event('render-event'))
+  }
 })

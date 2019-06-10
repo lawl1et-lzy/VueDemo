@@ -10,7 +10,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-
+const PrerenderSpaPlugin = require('prerender-spa-plugin')
+const Renderer = PrerenderSpaPlugin.PuppeteerRenderer
 const env = require('../config/prod.env')
 
 const webpackConfig = merge(baseWebpackConfig, {
@@ -115,7 +116,22 @@ const webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+    new PrerenderSpaPlugin({
+      // 生成文件的路径，此处与webpack打包地址一致
+      staticDir: path.join(config.build.assetsRoot), //config.build.assetsRoot为vue cli生成的配置，打包后的文件地址
+      // 配置要做预渲染的路由，只支持h5 history方式
+      routes: [ '/page/a', '/page/b'],
+      // 这个很重要，如果没有配置这段，也不会进行预编译
+      renderer: new Renderer({
+          headless: false,
+          inject: {
+            foo: 'bar'
+          },
+          // 在 main.js 中 document.dispatchEvent(new Event('render-event'))，两者的事件名称要对应上。
+          renderAfterDocumentEvent: 'render-event'
+      })
+    })
   ]
 })
 

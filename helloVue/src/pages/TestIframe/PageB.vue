@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="page-b">
     PageB
+    <router-link to="/">go to pageA</router-link>
   </div>
 </template>
 
