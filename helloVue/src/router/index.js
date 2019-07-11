@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/pages/TestIframe/index'
+import index from '@/pages/TestES6/index'
+import PageA from '@/pages/TestIframe/index'
 import PageB from '@/pages/TestIframe/PageB'
 // import Render from '@/pages/Render'
 // import TestRouter from '@/pages/TestRouter'
@@ -11,9 +12,14 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/page/a',
+      path: '/',
       name: 'Index',
-      component: Index
+      component: index
+    },
+    {
+      path: '/page/a',
+      name: 'PageA',
+      component: PageA
     },
     {
       path: '/page/b',

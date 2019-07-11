@@ -1,13 +1,24 @@
-// function fn ({x = 1, y = 2} = {}) {
-//   return `x=${x},y=${y}`
-// }
+class Fn {
+  constructor (x, y) {
+    this.x = x
+    this.y = y
+  }
 
-// console.log(fn())
-// console.log(fn({x: 2, y: 3}))
-// console.log(fn({ x: 3 }))
-
-function fn (...param) {
-  return [param]
+  toString () {
+    return this.x * this.y
+  }
 }
 
-console.log(fn(1, 2, 3, 4))
+class Fn1 extends Fn {
+  constructor (x, y, z) {
+    super(x, y)
+    this.z = z
+    this.x = x
+  }
+
+  toString () {
+    return this.z + ',' + this.x + ',' + super.toString()
+  }
+}
+let fn1 = new Fn1(10, 3, 4)
+console.log(fn1.toString())
