@@ -1,47 +1,61 @@
 <template>
   <div class="swiper-container gallery-container">
     <div class="swiper-wrapper">
-      <div
-        class="swiper-slide"
-      >
+      <div class="swiper-slide">
         1
       </div>
-      <div
-        class="swiper-slide"
-      >
+      <div class="swiper-slide">
         2
       </div>
-      <div
-        class="swiper-slide"
-      >
+      <div class="swiper-slide">
         3
       </div>
+      <div class="swiper-slide">
+        4
+      </div>
+      <div class="swiper-slide">
+        5
+      </div>
     </div>
-    <div class="swiper-pagination"></div>
+    <div class="swiper-scrollbar"></div>
   </div>
 </template>
 
 <script>
 /* eslint-disable */
-import '../../js/swiper'
+import Swiper from 'swiper'
+import 'swiper/dist/css/swiper.min.css'
 export default {
   name: 'TestSwiper',
   mounted () {
-    setTimeout(() => {
-        const swiperClass = new Swiper('.gallery-container', {
-      direction: 'horizontal',
-      spaceBetween: 10,
-      slidesPerView: 1.3,
-      centeredSlides: true,
-      loop: true
+    const swiperClass = new Swiper('.gallery-container', {
+      // slidesPerview: 1,
+      // loop: true,
+      scrollbar: '.swiper-scrollbar',
+      freeMode : true,
     })
-    }, 2000);
-    
-    console.log(swiperClass)
   }
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+.swiper-container{
+  width: 100%;
+  overflow: hidden;
+  .swiper-scrollbar{
+    width: 100px;
+  }
+  .swiper-wrapper{
+    width: 100%;
+    .swiper-slide{
+      width: 100%;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: antiquewhite;
+    }
+  }
+}
+  
 </style>

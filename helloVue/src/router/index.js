@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/pages/TestES6/index'
-import PageA from '@/pages/TestIframe/index'
-import PageB from '@/pages/TestIframe/PageB'
+import index from '@/pages/Swiper'
+// import PageA from '@/pages/TestIframe/index'
+// import PageB from '@/pages/TestIframe/PageB'
 // import Render from '@/pages/Render'
 // import TestRouter from '@/pages/TestRouter'
 
@@ -15,17 +15,17 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: index
-    },
-    {
-      path: '/page/a',
-      name: 'PageA',
-      component: PageA
-    },
-    {
-      path: '/page/b',
-      name: 'PageB',
-      component: PageB
     }
+    // {
+    //   path: '/page/a',
+    //   name: 'PageA',
+    //   component: PageA
+    // },
+    // {
+    //   path: '/page/b',
+    //   name: 'PageB',
+    //   component: PageB
+    // }
     // {
     //   path: '/testrouter/:id?/:pageid?',
     //   name: 'TestRouter',
