@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/pages/Swiper'
+import index from '@/pages/TestES6'
 // import PageA from '@/pages/TestIframe/index'
 // import PageB from '@/pages/TestIframe/PageB'
 // import Render from '@/pages/Render'

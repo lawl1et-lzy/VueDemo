@@ -1,24 +1,26 @@
-class Fn {
-  constructor (x, y) {
-    this.x = x
-    this.y = y
+class BaseDao {
+  constructor (model) {
+    this.model = model
   }
-
-  toString () {
-    return this.x * this.y
-  }
-}
-
-class Fn1 extends Fn {
-  constructor (x, y, z) {
-    super(x, y)
-    this.z = z
-    this.x = x
-  }
-
-  toString () {
-    return this.z + ',' + this.x + ',' + super.toString()
+  create (x, y) {
+    console.log('BaseDao create', x, y)
+    console.log('BaseDao this.model', this.model)
   }
 }
-let fn1 = new Fn1(10, 3, 4)
-console.log(fn1.toString())
+class User {
+  // create (x, y) {
+  //   console.log('User create', x + y)
+  // }
+}
+const user = new User()
+
+class UserDao extends BaseDao {
+  constructor () {
+    super(user)
+  }
+  // create (x, y) {
+  //   console.log('UserDao create', x, y)
+  // }
+}
+let userdao = new UserDao()
+userdao.create(1, 2)

@@ -2,7 +2,7 @@
 /**
  * 小时级倒计时动画
  * @param  {String} time [服务器时间戳]
- * @param  {String} time [倒计时截至时间]
+ * @param  {String} timesNum [倒计时截至时间]
  */
 export function _timeAnimation (time, timesNum) {
   var times = (timesNum - time), // 目标时间和服务器时间的差值

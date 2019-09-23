@@ -14,9 +14,9 @@ export default {
       minute: 0,
       second: 0,
       nowTimestamp: 0, // 开始时间
-      endTimestamp: 1555576794000, // 结束时间
+      endTimestamp: 1565692226000, // 结束时间
       timeDiff: 0, // 时间差 / 1000 秒为单位
-      leftTime: 0, // 剩余时间戳
+      leftTime: 1, // 剩余时间戳
       timeTag: Date.now() // 上一帧的时间
     }
   },

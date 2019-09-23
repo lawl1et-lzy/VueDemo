@@ -17,7 +17,7 @@ export default {
     }
   },
   mounted () {
-    _timeAnimation(Date.now(), 1553405076000)
+    _timeAnimation(Date.now(), 1565690226000)
   }
 }
 </script>
