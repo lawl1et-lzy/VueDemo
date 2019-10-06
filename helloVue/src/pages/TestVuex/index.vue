@@ -3,7 +3,7 @@
     <!-- 商品详情页 -->
     <h1>商品详情页</h1>
     <div class="goods">
-      <div v-for="item in phone" :key="item.id" class="item">
+      <div v-for="item in goods" :key="item.id" class="item">
         <p class="name">名称：{{ item.name }}</p>
         <p class="price">价格：{{ item.price }}</p>
         <div class="btn increase" @click="increaseItem(item)">+</div>
@@ -26,16 +26,37 @@ import { mapGetters, mapState, mapActions } from 'vuex'
 export default {
   name: 'Index',
   computed: {
-    ...mapGetters(['phone']),
+    // getter 1
+    ...mapGetters({
+      phone: 'goods/phone'
+    }),
+    // getter 2
+    phone2 () {
+      return this.$store.getters['goods/phone']
+    },
+    // state 1
     ...mapState({
       goods: (state) => state.goods.data,
       selected: (state) => state.goods.selected
-    })
+    }),
+    // state 2
+    goods2 () {
+      return this.$store.state.goods.data
+    }
   },
   methods: {
-    ...mapActions(['increase', 'delete']),
+    // action 1
+    ...mapActions('goods/',
+      [
+        'increase',
+        'delete'
+      ]
+    ),
     increaseItem (item) {
-      this.increase(item)
+      // this.increase(item)
+
+      // action 2
+      this.$store.dispatch('goods/increase', item)
     },
     deleteItem (item) {
       this.delete(item)

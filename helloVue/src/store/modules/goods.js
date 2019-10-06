@@ -24,6 +24,7 @@ const MOCK = [
   }
 ]
 const goods = {
+  namespaced: true,
   state: {
     data: MOCK,
     selected: []

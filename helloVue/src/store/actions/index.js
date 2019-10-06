@@ -7,13 +7,13 @@ const actions = {
     // 模拟异步
     setTimeout(() => {
       commit(GOODS_INCREASE, payload)
-    }, 2 * 1000)
+    }, 200)
   },
   delete ({ commit }, payload) {
     // 模拟异步
     setTimeout(() => {
       commit(GOODS_DELETE, payload)
-    }, 2 * 1000)
+    }, 200)
   }
 }
 
