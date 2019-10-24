@@ -31,3 +31,4 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 master/testMerge
 
+feature/testMerge1
