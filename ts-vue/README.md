@@ -36,3 +36,5 @@ feature/testMerge1
 feature/testMerge2
 
 master/testRebase
+
+feature/testRebase1
