@@ -1,27 +1,23 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-// import Home from '../views/Home.vue';
-const Home = () => import('../views/Home.vue');
-const About = () => import('../views/About.vue');
+
+const SongSheet = () => import('../views/song-sheet/index.vue');
+const Login = () => import('../views/login/index.vue');
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Home,
+    name: 'SongSheet',
+    component: SongSheet,
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: About,
-  },
+    path: '/login',
+    name: 'Login',
+    component: Login,
+  }
 ];
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
