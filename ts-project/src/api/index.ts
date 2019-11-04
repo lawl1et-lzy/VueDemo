@@ -1,5 +1,5 @@
 import axios from '@/util/Api/http'
-import { LoginParams, LoginRes } from '@/interface/index'
+import { LoginParams, SongSheetParams } from '@/interface/index'
 class Api {
   // 登录
   public static getLogin(params: LoginParams) {
@@ -9,14 +9,15 @@ class Api {
       params
     })
   }
-  // // 获取歌单列表
-  // static getSongSheet(data) {
-  //   return axios({
-  //     method: 'get',
-  //     url: '/user/playlist',
-  //     data
-  //   })
-  // }
+
+  // 获取歌单列表
+  public static getSongSheet(params: SongSheetParams) {
+    return axios({
+      method: 'get',
+      url: '/user/playlist',
+      params
+    })
+  }
 
   // // 获取歌单详细信息
   // static getSongList(data) {

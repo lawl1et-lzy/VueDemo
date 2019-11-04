@@ -16,7 +16,7 @@ import { Vue, Watch, Component } from 'vue-property-decorator'
 import { LoginParams } from '@/interface/index'
 import Cookies from 'js-cookie'
 @Component
-class Login extends Vue {
+export default class Login extends Vue {
   private account: string = ''; // 账号
   private password: string = ''; // 密码
   private disable: boolean = true; // 是否禁用
@@ -47,10 +47,11 @@ class Login extends Vue {
   }
   // 登录后的处理
   private handleAfterLogin(): void {
-    console.log('handleAfterLogin')
+    this.$router.push({
+      name: 'SongSheet'
+    })
   }
 }
-export default Login
 </script>
 
 <style lang="scss" scoped>

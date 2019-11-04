@@ -1,14 +1,16 @@
+// 登录接口
 interface LoginParams {
   phone: string;
   password: string;
 }
 
-interface LoginRes {
-  code: number;
-  account: object;
+// 歌单列表接口
+interface SongSheetParams {
+  uid: string
 }
+
 
 export {
   LoginParams,
-  LoginRes
+  SongSheetParams
 }
