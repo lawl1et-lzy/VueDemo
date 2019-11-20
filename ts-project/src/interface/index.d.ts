@@ -9,8 +9,13 @@ interface SongSheetParams {
   uid: string
 }
 
+// 歌单详情接口
+interface SongSheetObjParams {
+  id: string
+}
 
 export {
   LoginParams,
-  SongSheetParams
+  SongSheetParams,
+  SongSheetObjParams
 }

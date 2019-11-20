@@ -1,17 +1,21 @@
 <template>
   <div class="song-sheet">
     <SongSheetList 
-      :playlist="playlist"
+      :playlist="getSongSheetList"
+      @songSheetClick="handlerSongSheetClick"
     />
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Watch, Component } from 'vue-property-decorator';
+import { State, Action, namespace } from 'vuex-class'
 import { SongSheetParams } from '@/interface/index'
 import Cookies from 'js-cookie'
 import Api from '@/api/index'
 import SongSheetList from '@/components/SongSheetList.vue'
+
+const SongSheetListModule = namespace('SongSheetList')
 
 @Component({
   components: {
@@ -21,29 +25,36 @@ import SongSheetList from '@/components/SongSheetList.vue'
 export default class SongSheet extends Vue {
   private user: any = null
   private playlist: Array<any> = []
+
+  @SongSheetListModule.Getter getSongSheetList!: any
+  @SongSheetListModule.Action getSongSheet!: any
+
   created() {
-    this.init() 
+    this.init()
   }
   private init(): void {
     const user: string = Cookies.get('ts_user') || ''
     this.user = user && JSON.parse(user)
     if(this.user) {
-      let rq: SongSheetParams = {
+      const rq: SongSheetParams = {
         uid: this.user.id
       }
-      this.fetchSongSheet(rq)
+      this.getSongSheet(rq)
     } else {
       this.$router.push({
         name: 'Login'
       })
     }
   }
-  private async fetchSongSheet(params: SongSheetParams): Promise<void> {
-    const res: any = await Api.getSongSheet(params)
-    const { code, playlist } = res
-    if(code && code === 200) {
-      this.playlist = playlist
-    }
+  // 歌单项点击
+  private handlerSongSheetClick(songSheet: any): void {
+    const songSheetId = songSheet.id
+    this.$router.push({
+      name: 'SongList',
+      params: {
+        id: songSheetId
+      }
+    })
   }
 }
 </script>

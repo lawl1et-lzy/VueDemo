@@ -6,15 +6,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import '@/style/reset.scss'
 
 @Component({})
 export default class App extends Vue {}
 </script>
 
 <style lang="scss">
-*{
-  box-sizing: border-box;
-}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
