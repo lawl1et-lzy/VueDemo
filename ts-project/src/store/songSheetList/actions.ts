@@ -1,5 +1,5 @@
 import { ActionTree } from 'vuex'
-import type from './types'
+import type from './mutations-types'
 import { SongSheetParams } from '@/interface'
 import { SongSheetListState, RootState } from '@/store/types'
 import Api from '@/api'
