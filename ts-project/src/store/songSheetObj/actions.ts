@@ -1,7 +1,7 @@
 import { ActionTree } from 'vuex'
 import { SongSheetObjState, RootState } from '@/store/types'
 import { SongSheetObjParams } from '@/interface'
-import type from './types'
+import type from './mutations-types'
 import Api from '@/api'
 
 const actions: ActionTree<SongSheetObjState, RootState> = {

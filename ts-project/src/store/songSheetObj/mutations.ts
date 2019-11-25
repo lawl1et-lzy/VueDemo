@@ -1,6 +1,6 @@
 import { MutationTree } from 'vuex'
 import { SongSheetObjState } from '@/store/types'
-import type from './types'
+import type from './mutations-types'
 
 const mutations: MutationTree<SongSheetObjState> = {
   [type.GET_SONG_SHEET_OBJECT] (state, payload): any {

@@ -1,5 +1,5 @@
 import { MutationTree } from 'vuex'
-import type from './types'
+import type from './mutations-types'
 import { base } from '@/util/base'
 import { SongSheetListState } from '@/store/types'
 
