@@ -49,8 +49,11 @@ const SongSheetObjModule = namespace('SongSheetObj')
 export default class SongList extends Vue {
   private playlist: object = {} // 歌单详细信息
 
-  @SongSheetObjModule.Getter songSheetObj: any
-  @SongSheetObjModule.Action getSongSheetObj: any
+  // @SongSheetObjModule.Getter songSheetObj: any
+  @Getter('songSheetObj', { namespace: 'SongSheetObj' }) songSheetObj: any
+
+  // @SongSheetObjModule.Action getSongSheetObj: any
+  @Action('getSongSheetObj', {namespace: 'SongSheetObj'}) getSongSheetObj: any
 
   private created(): void {
     this.init();
