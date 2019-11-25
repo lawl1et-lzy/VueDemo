@@ -14,15 +14,20 @@
 </template>
 
 <script lang="ts">
-import { Vue, Prop, Component } from 'vue-property-decorator'
-
+import { Vue, Prop, Component, Emit } from 'vue-property-decorator'
+  
 @Component
 export default class SongSheetList extends Vue {
   @Prop(Array) readonly playlist!: Array<any> // ! 表示可以为undefined或者null
 
-  private async handleSongSheetItemClick(item: any): Promise<void> {
-    this.$emit('songSheetClick', item)
+  @Emit('songSheetClick')
+  handleSongSheetItemClick(item: any): any {
+    return item
   }
+
+  // private handleSongSheetItemClick(item: any): void {
+  //   this.$emit('songSheetClick', item)
+  // }
 }
 </script>
 
