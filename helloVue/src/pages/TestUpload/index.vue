@@ -49,7 +49,7 @@ export default {
     return {
       imgs: [],
       originImgs: ORIGIN_IMGS, // 原图片
-      upload: new Upload() // 图片上传对象
+      upload: new Upload({showLog: true}) // 图片上传对象
     }
   },
   methods: {
