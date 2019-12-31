@@ -13,9 +13,10 @@ class Upload {
   }
   // 工具类
   util = new Util()
+  // 构造函数
   constructor (options) {
     this.el = null // 创建 input dom元素
-    this.opts = {} // 参数
+    this.opts = {} // 合并用户参数和默认参数
     if(!this.util.isObject(options)) {
       options = {}
     }
@@ -37,46 +38,77 @@ class Upload {
   __createInputDom () {
     this.el = document.createElement('input')
     this.el.type = 'file'
-    this.el.accept = this.defaultOpts.accept
-    this.el.multiple = this.defaultOpts.multiple
+    this.el.accept = this.opts.accept || 'image/*'
+    this.el.multiple = this.opts.multiple || true
   }
   /**
+   * 选择图片
    * @private
    */
-  // 选择图片
   select () {
     return new Promise((resolve, reject) => {
-      // 添加标识，避免多次注册监听事件
-      if(this.el.getAttribute('data-change-listener') !== '1') {
-        this.el.setAttribute('data-change-listener', '1')
-        this.el.addEventListener('change', (e) => {
-          this.fn(e, resolve, reject)
-        }, false)
-      }
+      // 处理重复添加监听器问题 begin
+      const promise = new Promise((resolve, reject) => { 
+        const handleUpload = (e) => {
+          /* Removes the listeners */
+          this.el.removeEventListener('change', handleUpload)
+          resolve(e) // works just fine
+        }
+        this.el.addEventListener('change', handleUpload)
+      })
+      // 处理重复添加监听器问题 end
+      promise.then(e => {
+        const vRes = this.__validate(e)
+          const { response } = vRes
+          if(response && !response.errorCode) {
+            this.__handleInputChange(e, resolve, reject)
+          } else {
+            resolve(vRes)
+          }
+      })
       this.el.click()
     })
   }
-  fn = (e, resolve, reject) => {
+  // 处理 input change 函数
+  __handleInputChange (e, resolve, reject) {
+    const files = Array.from(e.target.files)
+    const pAll = files.map(file => this.__exifImg(file))
+    Promise.all(pAll)
+      .then(res => {
+        const rel = this.__handleEmitFile(res)
+        const { files, logArr } = rel
+        if(this.opts.showLog) {
+          this.__handleSendLog(logArr)
+        }
+        resolve(files)
+      })
+      .catch(err => {
+        reject(err)
+      })
+  }
+  // 验证参数
+  __validate(e) {
+    let response = {
+      errorCode: 0,
+      errorMsg: ''
+    }
     const files = Array.from(e.target.files)
     if(this.util.hasList(files)) {
-      const pAll = files.map(file => this.__exifImg(file))
-      Promise.all(pAll)
-        .then(res => {
-          const rel = this.__handleEmitFile(res)
-          const { files, logArr } = rel
-          if(this.opts.showLog) {
-            this.__handleSendLog(logArr)
-          }
-          resolve(files)
-        })
-        .catch(err => {
-          reject(err)
-        })
-    } else {
-      let fileObj = { // 默认输出对象
-        errorMsg: '选择图片出现错误',
+      if(!this.opts.multiple) this.opts.limit = 1
+      if(files.length > this.opts.limit) {
+        response = {
+          errorCode: 10002,
+          errorMsg: `文件超过${this.opts.limit}个，请重新选择`
+        }
       }
-      reject(fileObj)
+    } else {
+      response = {
+        errorCode: 10001,
+        errorMsg: '文件不能为空'
+      }
+    }
+    return { 
+      response
     }
   }
   /**
@@ -88,21 +120,20 @@ class Upload {
     for(let item of logArr) {
       log.add(item)
     }
-    console.log('log', log)
     log.table()
   }
   /**
    * 分离 log 和 图片数据
-   * @param { Array } data 
+   * @param { Array } datas 
    * @return { Object }
    */
-  __handleEmitFile(data) {
+  __handleEmitFile(datas) {
     let logArr = [] // log 数据
     let files = [] // 图片 数据
-    for(let item of data) {
-      let { 
+    for(let item of datas) {
+      const { response, data } = item
+      const { 
         name,
-        errorMsg, // 错误数据
         src, // 处理后的文件路径
         type, // 文件类型
         originSize, // 原始图片大小
@@ -113,13 +144,11 @@ class Upload {
         afterHeight, // 压缩后的图片高度
         quality, // 压缩质量
         ratio, // 压缩比率
-      } = item
+      } = data
       let log = {}
       let file = {}
-
       file.name = name
-      file.errorMsg = errorMsg || ''
-      file.src = src || ''
+      file.src = src
       files.push(file)
       
       // 原始log
@@ -146,7 +175,13 @@ class Upload {
     }
     return {
       logArr,
-      files
+      files: {
+        response: {
+          errorCode: 0,
+          errorMsg: ''
+        },
+        data: files
+      }
     }
   }
   /**
@@ -154,6 +189,10 @@ class Upload {
    * @private
    * @param { Object } file 文件信息
    * @return { Object } fileObj 
+   * fileObj = {
+   *   response,
+   *   data
+   * }
    */
    __exifImg(file) {
     return new Promise((resolve, reject) => {
@@ -169,12 +208,15 @@ class Upload {
         size,
       } = file 
 
+      // 默认相应对象
+      let response = {
+        errorCode: 0,
+        errorMsg: ''
+      }
       // 默认输出对象
-      let fileObj = { 
-        name,
-        errorMsg: '', // 错误数据
+      let fileObj = {
+        name, // 文件名自称
         src: '', // 处理后的文件路径
-
         type, // 文件类型
         originSize: size, // 原始图片大小
         afterSize: 0, // 压缩图片大小
@@ -261,29 +303,34 @@ class Upload {
           fileObj.afterSize = this.util.calcBase64Size(_base64)
           fileObj.ratio = Number((1 - (Number(fileObj.afterSize) / Number(fileObj.originSize))).toFixed(2))
           fileObj.src = _base64
-          resolve(fileObj)
+          resolve({
+            response,
+            data: fileObj
+          })
         }
         img.onerror = () => {
-          fileObj = {
+          response = {
+            errorCode: 10003,
             errorMsg: `${name}: 图片加载失败`
           }
-          resolve(fileObj)
+          resolve({ response })
         }
         fileReader.onload = (e) => {
           img.src = e.target.result;
         }
         fileReader.readAsDataURL(file)
       } else {
-        fileObj = {
+        response = {
+          errorCode: 10004,
           errorMsg: `${name}: 该文件非图片格式`
         }
-        resolve(fileObj)
+        resolve({response})
       }
     })
   }
 }
 
-// base util
+// 工具类
 class Util {
   // 计算 base64 大小
   calcBase64Size(base64url) {
@@ -327,8 +374,7 @@ class Util {
   }
 }
 
-
-// 输出 log 
+// log 类 
 class Log {
   log = {
     name: '', // 名称

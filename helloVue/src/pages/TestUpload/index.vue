@@ -59,8 +59,11 @@ export default {
     handleUploadClick () {
       this.upload.select()
         .then(res => {
-          if (this.hasList(res)) {
-            this.imgs = res
+          const { response, data } = res
+          if (response && !response.errorCode) {
+            this.imgs = data
+          } else {
+            console.log('handleUploadClick', response.errorCode)
           }
         })
         .catch(err => {
