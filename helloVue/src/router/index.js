@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import index from '@/pages/TestES6'
-import index from '@/pages/TestUpload'
+import index from '@/pages/TestPlugin'
 // import PageA from '@/pages/TestIframe/index'
 // import PageB from '@/pages/TestIframe/PageB'
 // import Render from '@/pages/Render'
