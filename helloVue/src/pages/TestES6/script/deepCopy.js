@@ -1,37 +1,10 @@
-// import { isObject } from 'util'
-
-// import { orderVoucherItems } from 'static/mock.js'
-
-let obj = [{
-  name: {
-    firstName: 'l',
-    lastName: 'awliet'
-  },
-  age: 25
-}]
-
-// 1. 遍历
-// for (let item in obj) {
-//   newObj[item] = obj[item]
-// }
-
-// 2. Object.assign()
-// let newObj = Object.assign({}, obj)
-
-// 3. 扩展运算符
-// let newObj = {...obj}
-
-let deepCopy = function (src) {
-  var ret = {}
-  for (var k in src) {
-    ret[k] = typeof src[k] === 'object' ? deepCopy(src[k]) : src[k]
+function deepCopy (target) {
+  if (typeof target !== 'object' || target == null) return target
+  let result = Array.isArray(target) ? [] : {}
+  for (let key in target) {
+    result[key] = deepCopy(target[key])
   }
-  return ret
+  return result
 }
 
-let newObj = deepCopy(obj)
-
-newObj[0].name.lastName = 'niya'
-
-console.log('obj', obj) // {name: "lawliet", age: 25}
-console.log('newObj', newObj) // {name: "niya", age: 25}
+export default deepCopy

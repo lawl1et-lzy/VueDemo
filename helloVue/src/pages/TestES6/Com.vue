@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{ content }}
+    {{ con || content }}
   </div>
 </template>
 
@@ -11,6 +11,18 @@ export default {
     content: {
       type: String
     }
+  },
+  data () {
+    return {
+      cont: ''
+    }
+  },
+  computed: {
+    con () {
+      return this.cont
+    }
+  },
+  mounted () {
   }
 }
 </script>

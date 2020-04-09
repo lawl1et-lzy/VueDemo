@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import index from '@/pages/TestES6'
-import index from '@/pages/TestPlugin'
+import index from '@/pages/TestES6'
+import Grid from '@/pages/TestCss/grid'
+// import index from '@/pages/TestPlugin'
 // import PageA from '@/pages/TestIframe/index'
 // import PageB from '@/pages/TestIframe/PageB'
 // import Render from '@/pages/Render'
@@ -16,6 +17,11 @@ export default new Router({
       path: '/',
       name: 'Index',
       component: index
+    },
+    {
+      path: '/grid',
+      name: 'Grid',
+      component: Grid
     }
     // {
     //   path: '/page/a',

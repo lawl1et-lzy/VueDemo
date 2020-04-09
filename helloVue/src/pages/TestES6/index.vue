@@ -1,35 +1,27 @@
 <template>
-  <div id="div">
-    <v-com :content="{a: 1}"></v-com>
+  <div class="container">
+    <div class="div">1</div>
+    <div class="div">2</div>
+    <div class="div">3</div>
   </div>
 </template>
 
 <script>
-// import './script/Test'
-import VCom from './Com'
+// import * as shuffle from './script/shuffle'
 export default {
   name: 'Index',
   data () {
-    return {
-      obj: {
-        a: 1
-      }
-    }
+    return {}
   },
-  components: {
-    VCom
+  mounted () {
   },
   methods: {
-    fn (...param) {
-      console.log(...param)
-    }
-  },
-  created () {
-    this.fn('a', 'b', 'c')
   }
 }
 </script>
 
 <style scoped>
-
+.num {
+  padding: 20px;
+}
 </style>

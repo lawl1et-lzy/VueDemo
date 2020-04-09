@@ -1,26 +1,13 @@
-class BaseDao {
-  constructor (model) {
-    this.model = model
+function RMB (str) {
+  let arr = str.split('').reverse()
+  let result = []
+  for (let i = 0; i < arr.length; i++) {
+    result.push(arr[i])
+    if ((i + 1) % 3 === 0 && arr.length !== (i + 1)) {
+      result.push(',')
+    }
   }
-  create (x, y) {
-    console.log('BaseDao create', x, y)
-    console.log('BaseDao this.model', this.model)
-  }
+  return result.reverse().join('')
 }
-class User {
-  // create (x, y) {
-  //   console.log('User create', x + y)
-  // }
-}
-const user = new User()
 
-class UserDao extends BaseDao {
-  constructor () {
-    super(user)
-  }
-  // create (x, y) {
-  //   console.log('UserDao create', x, y)
-  // }
-}
-let userdao = new UserDao()
-userdao.create(1, 2)
+console.log(RMB('123456789'))
