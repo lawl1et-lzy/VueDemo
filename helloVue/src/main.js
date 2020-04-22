@@ -3,7 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import '@/js/flex'
+// import '@/js/flex'
+// import '@/js/faskclick'
 import store from './store'
 import Axios from 'axios'
 
