@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import index from '@/pages/fabric'
-import demo from '@/pages/fabric/demo'
+// import index from '@/pages/fabric'
+// import demo from '@/pages/fabric/demo'
+import index from '@/pages/indexedDB'
+import localForage from '@/pages/indexedDB/localForage'
 // import index from '@/pages/Rem/meta.vue'
 // import index from '@/pages/Rem'
 // import index from '@/pages/TestES6'
@@ -23,10 +25,15 @@ export default new Router({
       component: index
     },
     {
-      path: '/demo',
-      name: 'Demo',
-      component: demo
+      path: '/localForage',
+      name: 'localForage',
+      component: localForage
     }
+    // {
+    //   path: '/demo',
+    //   name: 'Demo',
+    //   component: demo
+    // }
     // {
     //   path: '/pageb',
     //   name: 'PageB',
