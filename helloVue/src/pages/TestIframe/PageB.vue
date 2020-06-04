@@ -9,12 +9,16 @@
 export default {
   name: 'PageB',
   methods: {
-    postMessage (event) {
-      console.log('PageB', event)
-    }
+    // postMessage (event) {
+    //   console.log('PageB', event)
+    // }
+  },
+  created () {
+    console.log('PageB created')
   },
   mounted () {
-    window.addEventListener('message', this.postMessage, false)
+    console.log('PageB mounted')
+    // window.addEventListener('message', this.postMessage, false)
 
     // window.top.postMessage('i am from child', '*')
   }

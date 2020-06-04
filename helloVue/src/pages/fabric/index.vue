@@ -8,8 +8,10 @@
       <button class="btn undo" @click="toolClick('undo')">undo</button>
       <button class="btn redo" @click="toolClick('redo')">redo</button>
       <button class="btn clear" @click="toolClick('clear')">clear</button>
+      <button class="btn clear" @click="toImage">toImage</button>
     </div>
     <canvas id="canvas"></canvas>
+    <img :src="dataURL" alt="">
   </div>
 </template>
 
@@ -26,10 +28,11 @@ export default {
       canvasObjectIndex: 0, // 画板对象的下标
       textbox: '',
       drawWidth: 2, // 笔触宽度
-      color: '#ccc', // 画笔颜色
+      color: 'red', // 画笔颜色
       drawingObject: null, // 当前绘制对象
       moveCount: 1, // 绘制移动计数器
-      doDrawing: false // 绘制状态
+      doDrawing: false, // 绘制状态
+      dataURL: ''
     }
   },
   mounted () {
@@ -119,6 +122,16 @@ export default {
         this.doDrawing = true
         canvas.selection = false // 画板不显示选中
       }
+    },
+    toImage () {
+      this.dataURL = canvas.toDataURL({
+        format: 'png', // jpeg或png
+        quality: 1, // 图片质量，仅jpeg时可用
+        left: 5,
+        top: 5,
+        height: 891,
+        width: 630
+      })
     }
   }
 }

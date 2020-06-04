@@ -1,10 +1,16 @@
 <template>
   <div class="box">
-    index
+    <div class="draggable">
+      <div class="head" @click="headClick">head</div>
+      <div class="body" @click="bodyClick">body</div>
+      <div class="foot" @click="footClick">foot</div>
+    </div>
   </div>
 </template>
 
 <script>
+import './jquery-ui.min'
+import $ from 'jquery'
 export default {
   name: 'Index',
   data () {
@@ -12,31 +18,49 @@ export default {
     }
   },
   mounted () {
-    let $box = document.querySelector('.box')
-    // let style = window.getComputedStyle($box)
-    // let styleCon = window.getComputedStyle($box).content
-    // let stylePseudoEltCon = window.getComputedStyle($box, '::before').content
-    // console.log(styleCon) // normal
-    // console.log(stylePseudoEltCon) // 123
-
-    let style = $box.getBoundingClientRect()
-    console.log(style)
+    $('.draggable').draggable({ containment: '.box', handle: '.head' })
+  },
+  methods: {
+    headClick () {
+      console.log('headClick')
+    },
+    bodyClick () {
+      console.log('bodyClick')
+    },
+    footClick () {
+      console.log('footClick')
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .box{
-  border: 1px solid black;/*no*/
-  font-size: 13px; /*no*/
-  color: red;
-  margin: 740px 40px 30px 20px; /*no*/
-  width: 100px; /*no*/
-  height: 30px; /*no*/
-  &::before{
-    content: '123';
-    width: 10px;/*no*/
-    height: 10px;/*no*/
+  height: 100%;
+  width: 100%;
+  background-color: lemonchiffon;
+  padding: 100px;
+  .draggable {
+    width: 400px;
+    height: 400px;
+    border: 2px solid black; /*no*/
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    transform: translate3d(0, 0, 1px);
+    will-change: transform;
+    .head {
+      height: 100px;
+      background-color: lightblue;
+    }
+    .body {
+      flex-grow: 1;
+      background-color: lightsalmon;
+    }
+    .foot {
+      height: 100px;
+      background-color: lightblue;
+    }
   }
 }
 </style>

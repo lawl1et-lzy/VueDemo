@@ -1,12 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import index from '@/pages/fabric'
+import Index from '@/pages/TestIframe'
+import Fabric from '@/pages/fabric/tablet'
+import FabricIndex from '@/pages/fabric'
 // import demo from '@/pages/fabric/demo'
-import index from '@/pages/indexedDB'
-import localForage from '@/pages/indexedDB/localForage'
+import IndexedDB from '@/pages/indexedDB'
+// import localForage from '@/pages/indexedDB/localForage'
 // import index from '@/pages/Rem/meta.vue'
 // import index from '@/pages/Rem'
-// import index from '@/pages/TestES6'
+import H5 from '@/pages/H5'
 // import Grid from '@/pages/TestCss/grid'
 // import index from '@/pages/TestPlugin'
 // import PageA from '@/pages/TestIframe/index'
@@ -22,12 +24,27 @@ export default new Router({
     {
       path: '/',
       name: 'Index',
-      component: index
+      component: Index
     },
     {
-      path: '/localForage',
-      name: 'localForage',
-      component: localForage
+      path: '/fabric',
+      name: 'Fabric',
+      component: Fabric
+    },
+    {
+      path: '/fabricIndex',
+      name: 'FabricIndex',
+      component: FabricIndex
+    },
+    {
+      path: '/indexedDB',
+      name: 'IndexedDB',
+      component: IndexedDB
+    },
+    {
+      path: '/h5',
+      name: 'H5',
+      component: H5
     }
     // {
     //   path: '/demo',
