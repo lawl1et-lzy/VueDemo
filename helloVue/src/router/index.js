@@ -15,6 +15,7 @@ import H5 from '@/pages/H5'
 // import PageB from '@/pages/TestIframe/PageB'
 // import Render from '@/pages/Render'
 // import TestRouter from '@/pages/TestRouter'
+import TestES6 from '@/pages/TestES6'
 
 Vue.use(Router)
 
@@ -45,6 +46,11 @@ export default new Router({
       path: '/h5',
       name: 'H5',
       component: H5
+    },
+    {
+      path: '/es6',
+      name: 'TestES6',
+      component: TestES6
     }
     // {
     //   path: '/demo',
