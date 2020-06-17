@@ -1,14 +1,13 @@
+/* eslint-disable */
 function throttle (fn, delay = 100) {
   let timer = null
-  return function () {
-    if (timer) {
-      return false
-    }
+  return (...args) => {
+    if(timer) return false
     timer = setTimeout(() => {
-      fn.call(this, ...arguments)
+      fn.call(this, ...args)
       timer = null
     }, delay)
   }
 }
 
-export default throttle
+document.addEventListener('mousemove', throttle(() => console.log(new Date().getTime(), this), 1000), false);
