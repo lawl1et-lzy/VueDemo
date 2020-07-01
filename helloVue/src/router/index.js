@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/pages/TestIframe'
-import Fabric from '@/pages/fabric/tablet'
-import FabricIndex from '@/pages/fabric'
+import Fabric from '@/pages/fabric'
 // import demo from '@/pages/fabric/demo'
 import IndexedDB from '@/pages/indexedDB'
 // import localForage from '@/pages/indexedDB/localForage'
@@ -31,11 +30,6 @@ export default new Router({
       path: '/fabric',
       name: 'Fabric',
       component: Fabric
-    },
-    {
-      path: '/fabricIndex',
-      name: 'FabricIndex',
-      component: FabricIndex
     },
     {
       path: '/indexedDB',

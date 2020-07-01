@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import datas from '../../js/test'
 import PageB from './PageB'
 export default {
   name: 'PageA',
@@ -37,16 +36,7 @@ export default {
   },
   methods: {
     sendMessage () {
-      this.timer = setInterval(() => {
-        const data = datas[this.i]
-        if (data) {
-          this.$refs.iframe.contentWindow.postMessage(JSON.stringify({data: data}), '*')
-          this.i++
-        } else {
-          clearInterval(this.timer)
-          this.i = 0
-        }
-      }, 300)
+
     },
     iframeLoad () {
       window.addEventListener(
