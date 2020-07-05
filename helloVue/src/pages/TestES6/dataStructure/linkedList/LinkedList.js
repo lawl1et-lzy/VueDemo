@@ -1,6 +1,6 @@
 // 链表
 import Node from './Node'
-import { defaultEquals } from './util'
+import { defaultEquals } from '../util'
 
 export default class LinkedList {
   constructor (equalsFn = defaultEquals) {

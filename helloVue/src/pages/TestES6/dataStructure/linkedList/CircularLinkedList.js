@@ -1,6 +1,6 @@
 // 循环链表
 import Node from './Node'
-import { defaultEquals } from './util'
+import { defaultEquals } from '../util'
 import LinkedList from './LinkedList'
 
 class CircularLinkedList extends LinkedList {

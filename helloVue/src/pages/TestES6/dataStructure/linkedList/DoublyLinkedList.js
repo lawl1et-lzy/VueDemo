@@ -1,5 +1,5 @@
 // 双向链表
-import { defaultEquals } from './util'
+import { defaultEquals } from '../util'
 import Node from './Node'
 import LinkedList from './LinkedList'
 

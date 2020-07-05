@@ -1,5 +1,5 @@
 // 有序链表
-import { defaultEquals } from './util'
+import { defaultEquals } from '../util'
 import LinkedList from './LinkedList'
 
 class SortedLinkList extends LinkedList {
