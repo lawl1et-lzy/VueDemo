@@ -43,28 +43,38 @@ function factorialIterative (number, sum) {
  * 斐波那契数
  * 1 1 2 3 5 8...
  */
-// function fibonacci (index) {
-function fibonacci (index, sum) {
+function fibonacci (index) {
+// function fibonacci (index, sum = 0) {
   // 1. 存放在 arr 里面
-  if (index == null || index === 0) return index
-  let _idx = index - 1
-  if (_idx === 0 || _idx === 1) return 1
-  let arr = [1, 1]
-  for (let i = 2; i <= _idx; i++) {
-    arr.push((arr[i - 1] + arr[i - 2]))
-  }
-  return arr[arr.length - 1]
+  // if (index == null || index === 0) return index
+  // let _idx = index - 1
+  // if (_idx === 0 || _idx === 1) return 1
+  // let arr = [1, 1]
+  // for (let i = 2; i <= _idx; i++) {
+  //   arr.push((arr[i - 1] + arr[i - 2]))
+  // }
+  // return arr[arr.length - 1]
 
   // 2. 递归
   // if (index == null || index === 0) return index
   // let _idx = index - 1
   // if (_idx === 0 || _idx === 1) return 1
   // return fibonacci(index - 1) + fibonacci(index - 2)
+
+  // 3. ES6
+  let a = 1
+  let b = 1
+  let i = 2
+  while (i <= index) {
+    [a, b] = [b, a + b]
+    i++
+  }
+  return a
 }
 
 try {
   // console.time('fibonacci')
-  const sum = fibonacci(1000)
+  const sum = fibonacci(3)
   // console.timeEnd('fibonacci')
   console.log('sum', sum)
 } catch (error) {
