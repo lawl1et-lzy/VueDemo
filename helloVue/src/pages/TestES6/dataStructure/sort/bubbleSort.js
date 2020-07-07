@@ -17,6 +17,7 @@ function bubbleSort (arr, fn = (a, b) => a - b) {
       const a = arr[j]
       const b = arr[j + 1]
       if (fn(a, b) > 0) {
+        // [a, b] = [b, a] 不能这么写
         [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]
         done = false
       }

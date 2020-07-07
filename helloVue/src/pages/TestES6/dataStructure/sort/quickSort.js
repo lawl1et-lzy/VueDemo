@@ -44,11 +44,12 @@ function quickSort1 (arr) {
 }
 
 // 方法 2 不改变原数组
-function quickSort2 (arr, fn = (a, b) => a - b) {
-  if (!Array.isArray(arr) || arr.length < 1) return arr
+function quickSort2 (_arr, fn = (a, b) => a - b) {
+  if (!Array.isArray(_arr) || _arr.length < 1) return _arr
+  const arr = JSON.parse(JSON.stringify(_arr))
   // 1. 计算出中间值
   let pivotIdx = Math.floor(arr.length / 2)
-  let pivot = arr.slice(pivotIdx, 1)[0] // 用 splice 会改变原数组
+  let pivot = arr.splice(pivotIdx, 1)[0] // 用 splice 会改变原数组
 
   // 2. 初始化左右两边数组
   let left = []
