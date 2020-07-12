@@ -12,6 +12,7 @@
 // import './dataStructure/sort/quickSort'
 // import './dataStructure/search/binarySearch'
 import './dataStructure/test'
+// import './designMode/Observer'
 
 export default {
   name: 'Index',
@@ -25,10 +26,12 @@ export default {
   mounted () {
   },
   methods: {
-
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.bfc {
+  overflow: hidden;
+}
 </style>
