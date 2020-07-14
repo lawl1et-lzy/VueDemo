@@ -48,24 +48,24 @@ function promiseRetry (fn, times) {
 /**
  * Promise
  */
-function promiseRetry(fn, times) {
-  return (...args) => {
-    return new Promise((resolve, reject) => {
-      const retry = (fn, times) => {
-        let error
-        if(times) {
-          const p = fn.call(this, ...args)
-          p.then(res => resolve(res)).catch(err => {
-            error = err
-            retry(fn, times--)
-          })
-        } else {
-          reject(error)
-        }
+const promiseRetry = (fn, times) => {
+  return new Promise((resolve, reject) => {
+    let error
+    const retry = (fn, times) => {
+      if (times) {
+        console.log('times', times)
+        fn().then(res => {
+          resolve(res)
+        }).catch(err => {
+          error = err
+          retry(fn, --times)
+        })
+      } else {
+        reject(error)
       }
-      retry(fn, times)
-    })
-  }
+    }
+    retry(fn, times)
+  })
 }
 
 /**
@@ -94,14 +94,13 @@ function promiseRetry(fn, times) {
 }
 
 // 示例
-function fn(...args) {
+const fn = () => {
   return new Promise((resolve, reject) => {
-    resolve(1)
-    console.log('fn args', args)
+    Math.random() < 0.33 ? resolve(1) : reject(2)
   })
 }
-promiseRetry(fn, 3)(1,2,3).then(res => {
-  console.log('promiseRetry res', res)
-}).catch(error => {
-  console.log('promiseRetry error', error)
+promiseRetry(fn, 3).then(res => {
+  console.log('res', res)
+}).catch(err => {
+  console.log('err', err)
 })

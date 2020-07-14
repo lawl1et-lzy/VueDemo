@@ -1,5 +1,7 @@
 <template>
   <div class="container">
+    <div class="box box1">box1</div>
+    <div class="box box2">box2</div>
   </div>
 </template>
 
@@ -33,5 +35,17 @@ export default {
 <style lang="scss" scoped>
 .bfc {
   overflow: hidden;
+}
+.box {
+  width: 100%;
+  height: 150px;
+}
+.box1 {
+  background: chocolate;
+  margin-bottom: 50px;
+}
+.box2 {
+  background: cornsilk;
+  margin-top: 100px;
 }
 </style>

@@ -1,23 +1,32 @@
-// let set = new Set('safsdfasdfsadfasdfdddddaaaasssss')
-
-// // let arr = ['']
-
-// // arr.forEach(item => set.add(item))
-// console.log(set)
-/* eslint-disable */
-console.log(7);
 (function test () {
-  setTimeout(function () { console.log(4) }, 0)
-  new Promise(function executor (resolve) {
-    console.log(1)
-      for (var i = 0; i < 10000; i++) {
-      i == 9999 && resolve()
-      }
-      Promise.resolve(6).then(e => console.log(e))
+  console.log(9)
+})()
+
+console.log(3)
+process.nextTick(() => {
+  console.log(4)
+})
+setImmediate(function A () {
+  console.log(1)
+  setImmediate(function B () {
+    process.nextTick(() => {
+      console.log(5)
+    })
     console.log(2)
-  }).then(function () {
-    console.log(5)
   })
-  console.log(3)
-})();
-console.log(8)
+})
+Promise.resolve(8).then(res => console.log(res))
+const p = new Promise((resolve, reject) => {
+  console.log(7)
+  resolve(6)
+})
+
+p.then(res => console.log(res))
+
+setTimeout(function timeout () {
+  console.log('TIMEOUT FIRED')
+}, 0)
+
+// miscrotask: 7 8 6 1 4        2 5
+// mascrotask: 9 3 TIMEOUT FIRED
+// 9 3 7 8 6 1 4 TIMEOUT FIRED 2 5

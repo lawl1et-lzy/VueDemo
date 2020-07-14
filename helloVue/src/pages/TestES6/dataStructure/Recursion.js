@@ -44,7 +44,7 @@ function factorialIterative (number, sum) {
  * 1 1 2 3 5 8...
  */
 function fibonacci (index) {
-// function fibonacci (index, sum = 0) {
+// function fibonacci (index, n1 = 1, n2 = 1) {
   // 1. 存放在 arr 里面
   // if (index == null || index === 0) return index
   // let _idx = index - 1
@@ -61,7 +61,12 @@ function fibonacci (index) {
   // if (_idx === 0 || _idx === 1) return 1
   // return fibonacci(index - 1) + fibonacci(index - 2)
 
-  // 3. ES6
+  // 3. 尾递归
+  // if (index === 1) return n2
+
+  // return fibonacci(index - 1, n2, n1 + n2)
+
+  // 4. ES6
   let a = 1
   let b = 1
   let i = 2
