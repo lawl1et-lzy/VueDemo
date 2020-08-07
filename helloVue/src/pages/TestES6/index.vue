@@ -1,7 +1,6 @@
 <template>
   <div class="container">
-    <div class="box box1">box1</div>
-    <div class="box box2">box2</div>
+    <button @click="handleButton">button</button>
   </div>
 </template>
 
@@ -13,21 +12,20 @@
 // import './dataStructure/sort/mergeSort'
 // import './dataStructure/sort/quickSort'
 // import './dataStructure/search/binarySearch'
-import './dataStructure/test'
+// import './dataStructure/test'
 // import './designMode/Observer'
-
+import './script/flat'
 export default {
   name: 'Index',
-  data () {
-    return {
-    }
-  },
   created () {
 
   },
   mounted () {
+
   },
   methods: {
+    handleButton () {
+    }
   }
 }
 </script>
