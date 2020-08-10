@@ -1,3 +1,4 @@
+/* eslint-disable */
 // 递归
 const flat1 = (arr) => {
   if (!Array.isArray(arr)) return arr
