@@ -2,7 +2,7 @@
 
 ## Project setup
 ```
-npm install  666
+npm install
 ```
 
 ### Compiles and hot-reloads for development
@@ -27,14 +27,3 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-
-master/testMerge
-
-feature/testMerge1
-
-feature/testMerge2
-
-master/testRebase
-
-feature/testRebase1
