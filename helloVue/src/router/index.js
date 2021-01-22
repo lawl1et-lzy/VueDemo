@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/pages/TestIframe'
+// import Index from '@/pages/TestIframe'
 import Fabric from '@/pages/fabric'
 // import demo from '@/pages/fabric/demo'
 import IndexedDB from '@/pages/indexedDB'
@@ -15,6 +15,7 @@ import H5 from '@/pages/H5'
 // import Render from '@/pages/Render'
 // import TestRouter from '@/pages/TestRouter'
 import TestES6 from '@/pages/TestES6'
+import Index from '@/pages/HelloXlsx'
 
 Vue.use(Router)
 

@@ -17,7 +17,10 @@
     "localforage": "^1.7.3",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
-    "vuex": "^3.1.0"
+    "vuex": "^3.1.0",
+    "vxe-table": "^3.0.28",
+    "xe-utils": "^3.1.2",
+    "xlsx": "^0.16.9"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

@@ -8,20 +8,25 @@ import '@/js/faskclick'
 import store from './store'
 import Axios from 'axios'
 
+import 'xe-utils'
+import VXETable from 'vxe-table'
+import 'vxe-table/lib/style.css'
+
+Vue.use(VXETable)
+
 Vue.prototype.$axios = Axios
 Vue.prototype.HOST = '/api'
 Vue.config.productionTip = false
 
 Vue.prototype.$EventBus = new Vue()
-
-/* eslint-disable no-new */
+/* eslint-disable */
 new Vue({
-  el: '#app',
-  router,
-  store,
-  components: { App },
-  template: '<App/>'
-  // mounted () {
-  //   document.dispatchEvent(new Event('render-event'))
-  // }
+    el: '#app',
+    router,
+    store,
+    components: { App },
+    template: '<App/>'
+    // mounted () {
+    //   document.dispatchEvent(new Event('render-event'))
+    // }
 })
