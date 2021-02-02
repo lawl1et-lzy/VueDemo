@@ -1,109 +1,102 @@
 <template>
-  <div>
+  <div class="container">
     <div>
-      Files
-      <input
-        type="file"
-        id="files"
-        ref="files"
-        multiple
-        v-on:change="handleFilesUpload()"
-      />
+      <Search :searchDatas="searchDatas" @output="handleSearchOutput"></Search>
     </div>
-    <vxe-toolbar>
-      <template v-slot:buttons>
-        <vxe-button @click="allAlign = 'left'">居左</vxe-button>
-        <vxe-button @click="allAlign = 'center'">居中</vxe-button>
-        <vxe-button @click="allAlign = 'right'">居右</vxe-button>
-      </template>
-    </vxe-toolbar>
 
-    <!-- <vxe-table :align="allAlign" :data="tableData" :merge-cells="mergeCells">
-      <vxe-table-column type="seq" width="60"></vxe-table-column>
-      <vxe-table-column field="article" title="article"></vxe-table-column>
-      <vxe-table-column field="age" title="age"></vxe-table-column>
-      <vxe-table-column field="sex" title="sex"></vxe-table-column>
-      <vxe-table-column field="是否发表" title="是否发表"></vxe-table-column>
-      <vxe-table-column field="是否签约" title="是否签约"></vxe-table-column>
-    </vxe-table> -->
-    <vxe-table
-      border="full"
-      highlight-hover-row="true"
-      highlight-current-row="true"
-      highlight-hover-column="true"
-      highlight-current-column="true"
-      ref="xTable"
-      :data="tableData"
-      :merge-cells="mergeCells"
-      height="800"
-      resizable="true"
-      fixed="left"
-      stripe="true"
-      round="true"
-      size="mini"
-      showOverflow="tooltip"
-    >
-      <vxe-table-column
-        v-for="(config, index) in tableColumns"
-        :key="index"
-        v-bind="config"
-      ></vxe-table-column>
-    </vxe-table>
+    <template v-if="Array.isArray(tableData) && tableData.length > 0">
+      <vxe-table
+        border="full"
+        :highlight-hover-row="true"
+        :highlight-current-row="true"
+        :highlight-hover-column="true"
+        :highlight-current-column="true"
+        ref="xTable"
+        :data="tableData"
+        :merge-cells="mergeCells"
+        height="800px"
+        :resizable="true"
+        fixed="left"
+        :stripe="true"
+        :round="true"
+        size="mini"
+        showOverflow="tooltip"
+      >
+        <vxe-table-column
+          v-for="(config, index) in tableColumns"
+          :key="index"
+          v-bind="config"
+        ></vxe-table-column>
+      </vxe-table>
+    </template>
   </div>
 </template>
 
 <script>
+/* eslint */
 import WorkBookUtil from './util/xlsx.util'
+import mockData from '@/assets/getAllExcelFiles'
+import Search from './search'
+let xlsx = null
 export default {
   name: 'Xlsx',
+  components: {
+    Search
+  },
   data () {
     return {
-      files: [],
-      allAlign: null,
-      tableData: [
-        // { id: 10001, name: 'Test1', role: 'Develop', sex: 'Man', age: 28, address: 'vxe-table 从入门到放弃' },
-        // { id: 10002, name: 'Test2', role: 'Test', sex: 'Women', age: 22, address: 'Guangzhou' },
-        // { id: 10003, name: 'Test3', role: 'PM', sex: 'Man', age: 32, address: 'Shanghai' },
-        // { id: 10004, name: 'Test4', role: 'Designer', sex: 'Women ', age: 24, address: 'Shanghai' }
-      ],
-      mergeCells: [
-      ],
+      tableData: [],
+      mergeCells: [],
+      searchDatas: [],
       tableColumns: []
     }
   },
   created () {
+    // this.$axios.get('http://localhost:8080/getAllExcelFiles')
+    //   .then(res => {
+    //     console.log(res)
+    //     this.handleCtripFiles(res)
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
 
+    this.handleCtripFiles(mockData)
   },
-  mounted () {
-
-  },
+  mounted () { },
 
   methods: {
-    handleFilesUpload () {
-      const $this = this
-      let uploadedFiles = this.$refs.files.files
+    handleSearchOutput (data) {
+      const { id, sheetName } = data
+      console.log('handleSearchOutput: ', data)
+      const { tableData, mergeCells, tableColumns } = xlsx.getWorkSheetDataByName(id, sheetName)
+      this.tableData = tableData
+      this.mergeCells = mergeCells
+      this.tableColumns = tableColumns
+    },
+    handleCtripFiles (res) {
+      //   const { data } = res
+      //   const { base64Body: { content } } = data[0]
+      //   const xlsx = new WorkBookUtil(content)
+      //   window.xlsx = xlsx
+      //   const { tableData, mergeCells, tableColumns } = xlsx.getWorkSheetDataByName('获取常见问题列表接口')
+      //   this.tableData = tableData
+      //   this.mergeCells = mergeCells
+      //   this.tableColumns = tableColumns
 
-      for (var i = 0; i < uploadedFiles.length; i++) {
-        this.files.push(uploadedFiles[i])
-      }
-
-      var f = uploadedFiles[0]
-      var reader = new FileReader()
-      reader.onload = function (e) {
-        var data = e.target.result
-        const xlsx = new WorkBookUtil(data)
-        window.xlsx = xlsx
-        // orderCreateV4下单(抢票下单接口)
-        // Sheet3
-        const { tableData, mergeCells, tableColumns } = xlsx.getWorkSheetDataByName('orderCreateV4下单(抢票下单接口)')
-        $this.tableData = tableData
-        $this.mergeCells = mergeCells
-        $this.tableColumns = tableColumns
-      }
-      reader.readAsArrayBuffer(f)
+      const { data } = res
+      xlsx = new WorkBookUtil(data)
+      window.xlsx = xlsx
+      const searchDatas = xlsx.getSearchData()
+      this.searchDatas = searchDatas
+      //   console.log('searchDatas: ', searchDatas)
     }
   }
 }
 </script>
 <style scoped>
+.container {
+  width: 100%;
+  height: 100%;
+}
 </style>
