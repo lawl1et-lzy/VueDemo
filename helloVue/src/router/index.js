@@ -16,6 +16,7 @@ import H5 from '@/pages/H5'
 // import TestRouter from '@/pages/TestRouter'
 import TestES6 from '@/pages/TestES6'
 import Index from '@/pages/HelloXlsx'
+// import Index from '@/pages/HelloXlsx/file/file.vue'
 
 Vue.use(Router)
 

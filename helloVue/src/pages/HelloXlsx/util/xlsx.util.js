@@ -1,5 +1,6 @@
 /* eslint-disable */
-import XLSX from "xlsx";
+// import XLSX from "xlsx";
+import XLSX from "xlsx-style";
 const patt = /[\u4E00-\u9FA5|\\！|\\，|\\。|\\（|\\）|\\《|\\》|\\“|\\”|\\？|\\：|\\；|\\【|\\】]/g
 const SOA = 'SOA'
 const SOTP = 'SOTP'
@@ -35,7 +36,12 @@ export default class WorkBookUtil {
         filesData.forEach(fd => {
             // 单个实例对象
             if(fd.base64Body && fd.base64Body.content && fd.name && fd.path) {
-                const workbook = XLSX.read(fd.base64Body.content, {type: "base64"})
+                const workbook = XLSX.read(fd.base64Body.content, {
+                    // bookType: "xlsx",
+                    // bookSST: true,
+                    type: "base64",
+                    cellStyles: true
+                })
                 workbookMap[fd.id] = {
                     workbook,
                     name: fd.name,

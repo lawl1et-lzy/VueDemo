@@ -54,7 +54,7 @@
 
 <script>
 /* eslint */
-import WorkBookUtil from './util/xlsx.util'
+import WorkBookUtil from './xlsx.util'
 export default {
   name: 'Xlsx',
   data () {
@@ -101,7 +101,7 @@ export default {
         window.xlsx = xlsx
         // orderCreateV4下单(抢票下单接口)
         // Sheet3
-        const { tableData, mergeCells, tableColumns } = xlsx.getWorkSheetDataByName('orderCreateV4下单(抢票下单接口)')
+        const { tableData, mergeCells, tableColumns } = xlsx.getWorkSheetDataByName('Sheet3')
         $this.tableData = tableData
         $this.mergeCells = mergeCells
         $this.tableColumns = tableColumns

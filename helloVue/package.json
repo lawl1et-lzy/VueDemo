@@ -21,7 +21,8 @@
     "vuex": "^3.1.0",
     "vxe-table": "^3.0.28",
     "xe-utils": "^3.1.2",
-    "xlsx": "^0.16.9"
+    "xlsx": "^0.16.9",
+    "xlsx-style": "^0.8.13"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
