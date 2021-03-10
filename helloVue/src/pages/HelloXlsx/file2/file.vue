@@ -15,8 +15,8 @@
 
 <script>
 /* eslint-disable */
-// import Excel from 'exceljs'
-import '../util/exceljs.min'
+import Excel from 'exceljs'
+// import '../util/exceljs.min'
 import mockData from '@/assets/getAllExcelFiles'
 /* eslint */
 export default {
@@ -29,18 +29,18 @@ export default {
   created () {
   },
   async mounted () {
-    // const { data } = mockData
-    // const fileBase64Data = data[0].base64Body
-    // console.log('fileBase64Data', fileBase64Data)
+    const { data } = mockData
+    const fileBase64Data = data[0].base64Body
+    console.log('fileBase64Data', fileBase64Data)
     // var Excel = window.ExcelJS
-    // var workbook = new Excel.Workbook()
-    // const buffer = this._base64ToArrayBuffer(fileBase64Data.content)
-    // await workbook.xlsx.load(buffer)
-    // workbook.eachSheet(function (worksheet, sheetId) {
-    // console.log('worksheet: ', worksheet)
-    // console.log('sheetId: ', sheetId)
-    // window.worksheet = worksheet 
-    // })
+    var workbook = new Excel.Workbook()
+    const buffer = this._base64ToArrayBuffer(fileBase64Data.content)
+    await workbook.xlsx.load(buffer)
+    workbook.eachSheet(function (worksheet, sheetId) {
+        console.log('worksheet: ', worksheet)
+        console.log('sheetId: ', sheetId)
+        window.worksheet = worksheet 
+    })
   },
 
   methods: {
